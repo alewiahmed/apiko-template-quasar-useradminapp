@@ -10,11 +10,13 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import store from './store'
 import router from './router'
-import libraries from './libraries.js'
+import Vuelidate from 'vuelidate'
+import apikoApi from './api/index.js'
+
+window.apikoApi = apikoApi
 
 Vue.use(Quasar) // Install Quasar Framework
-Vue.use(libraries)
-
+Vue.use(Vuelidate)
 Quasar.start(() => {
   /* eslint-disable no-new */
   new Vue({

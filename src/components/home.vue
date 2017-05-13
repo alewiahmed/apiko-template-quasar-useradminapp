@@ -1,31 +1,5 @@
 <template>
-  <q-layout>
-    <div slot="header" class="toolbar">
-      <q-toolbar-title :padding="0">
-      <button class="big" @click="redirect('home')">Apiko + Quasar Framework v{{$q.version}}</button>
-      </q-toolbar-title>
-      <button v-if="loggedIn">
-      {{user.username}}
-      </button>
-      <button v-if="!loggedIn" @click="redirect('login')">
-        <i>menu</i>
-        Login
-      </button>
-      <button v-if="!loggedIn" @click="redirect('registration')">
-        <i>add_box</i>
-        Register
-      </button>
-    </div>
-
-    <!--
-      Replace following "div" with
-      <router-view class="layout-view"> component
-      if using subRoutes
-    -->
-    <transition>
-    <router-view class="layout-view"></router-view>
-    </transition>
-    <!-- <div class="layout-view">
+    <div class="layout-view">
       <div class="logo-container non-selectable no-pointer-events">
         <div class="logo" :style="position">
           <img src="~assets/quasar-logo.png">
@@ -38,15 +12,13 @@
           </p>
         </div>
       </div>
-    </div> -->
-  </q-layout>
+    </div>
 </template>
 
 <script>
 var moveForce = 30
 var rotateForce = 40
 
-import { mapGetters } from 'vuex'
 import { Utils, Platform } from 'quasar'
 
 export default {
@@ -60,7 +32,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['user', 'loggedIn']),
     position () {
       let transform = `rotateX(${this.rotateX}deg) rotateY(${this.rotateY}deg)`
       return {
@@ -125,6 +96,4 @@ export default {
 .logo
   position absolute
   transform-style preserve-3d
-body
-  background-color #f5f8fa;
 </style>

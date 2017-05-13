@@ -1,8 +1,7 @@
-import Vue from 'vue'
-import axios from 'axios'
+import apiko from './api/index.js'
 // used to define any libraries to use inside any vue component
 export default {
-  install () {
-    Object.defineProperty(Vue.prototype, '$axios', {value: axios})
+  install (Vue) {
+    Object.defineProperty(Vue.prototype, '$apiko', { value: apiko })
   }
 }
