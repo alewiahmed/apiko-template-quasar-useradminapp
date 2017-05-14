@@ -2,8 +2,10 @@
   <div>
     <div class="layout-padding flex justify-center">
       <div class="card login-container">
-      <div class="card-title text-center bg-white list bordered">
-          Login
+        <div class="toolbar inverted text-black list">
+          <q-toolbar-title class="text-center">
+            Login
+          </q-toolbar-title>
         </div>
         <div class="card-content bg-white column items-center">
           <div class="floating-label">
@@ -24,7 +26,7 @@
             </ul>
           </div>
           <small class="text-red error-text" v-if="errorId > 0">{{error}}</small>
-          <div class="row wrap justify-center">
+          <div class="row wrap justify-center button-container">
             <button class="green small" :disabled="$v.$invalid" @click.stop="login">
               Login<i class="on-right">keyboard_arrow_right</i>
             </button>
@@ -47,6 +49,7 @@
 
 <script>
 import { Loading } from 'quasar'
+import { login } from '../utils.js'
 
 import { required, minLength, email } from 'vuelidate/lib/validators'
 export default {
@@ -104,17 +107,9 @@ export default {
     },
     login () {
       Loading.show(this.loadingObj)
-      let p = this.$store.dispatch('login', {
-        username: this.username,
-        password: this.password
-      })
-
+      let p = login(this.username, this.password)
       p.then(response => {
         Loading.hide()
-        console.log('Successfully logged in.')
-        this.$store.commit('loggedIn', true)
-        this.$store.commit('user', response.data.user)
-        this.$store.commit('token', response.data.token)
         this.$router.replace('dashboard')
       })
 
@@ -152,6 +147,13 @@ export default {
 }
 .or-container {
   margin: 5px auto;
+}
+.error-list {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.button-container {
+  margin-top: 10px;
 }
 /*.floating-label label {
   top: 5px;

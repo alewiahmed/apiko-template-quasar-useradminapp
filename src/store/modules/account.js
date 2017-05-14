@@ -31,6 +31,15 @@ export default {
       let p = window.apikoApi.post('users/login', args)
 
       return p
+    },
+    register (context, args) {
+      let p = window.apikoApi.post('users', args)
+
+      return p
+    },
+    userExists (context, username) {
+      let p = window.apikoApi.get('users/exists/' + username)
+      return p
     }
   }
 }

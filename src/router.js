@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
     }
   }
   else if (store.state.account.loggedIn && to.matched.some(m => m.meta.onlyNotLogged)) {
-    next('/')
+    next('dashboard')
   }
   else {
     next()
