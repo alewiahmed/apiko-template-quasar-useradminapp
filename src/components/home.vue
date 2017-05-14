@@ -44,9 +44,6 @@ export default {
     }
   },
   methods: {
-    redirect (address) {
-      this.$router.push({name: address})
-    },
     move (evt) {
       const {width, height} = Utils.dom.viewport()
       const {top, left} = Utils.event.position(evt)
