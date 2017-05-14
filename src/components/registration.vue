@@ -18,7 +18,7 @@
         </div>
         <div class="self-start">
           <ul class="error-list">
-            <li v-if="!$v.username.isUnique && $v.username.$error" class="text-red text-truncate"><strong>This email is already registered.</strong> <a href="#/account/password-recovery"><small>Forgot your password?</small></a></li>
+            <li v-if="!$v.username.isUnique && $v.username.$error" class="text-red text-truncate"><strong>This email is already registered.</strong> <a href="#/password-recovery"><small>Forgot your password?</small></a></li>
             <li v-if="!$v.username.required && $v.username.$error" class="text-red text-truncate"><small>Email is Required.</small></li>
             <li v-if="!$v.username.email && $v.username.$error" class="text-red text-truncate"><small>Email usually contains @ and a dot.</small></li> 
           </ul>
