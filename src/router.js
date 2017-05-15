@@ -35,7 +35,8 @@ let router = new VueRouter({
       { name: 'login', path: 'login', component: load('login'), meta: { onlyNotLogged: true } },
       { name: 'registration', path: 'register', component: load('registration'), meta: { onlyNotLogged: true } },
       { name: 'passwordRecovery', path: 'password-recovery', component: load('passwordRecovery'), meta: { onlyNotLogged: true } },
-      { name: 'dashboard', path: 'dashboard', component: load('dashboard'), meta: { onlyLogged: true, onlyNotLogged: false } }
+      { name: 'dashboard', path: 'dashboard', component: load('dashboard'), meta: { onlyLogged: true } },
+      { name: 'accountSettings', path: 'account-settings', component: load('accountSettings'), meta: { onlyLogged: true } }
       ] },
   { path: '*', component: load('Error404') } // Not found
   ]

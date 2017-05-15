@@ -4,7 +4,7 @@
       <div class="card login-container">
         <div class="toolbar inverted text-black list">
           <q-toolbar-title class="text-center">
-            Login
+            <span class="header-text">Login</span>
           </q-toolbar-title>
         </div>
         <div class="card-content bg-white column items-center">
@@ -33,7 +33,7 @@
             <button class="text-red capitalize clear light-paragraph" @click.stop="$router.push({name: 'passwordRecovery'})">Forgot your password?</button>
           </div>
           <div class="or-container">
-            <h6>or</h6>
+            <h6 class="header-text">or</h6>
           </div>
           <div>
             <button class="primary" @click="goToRegistration">
@@ -155,12 +155,7 @@ export default {
 .button-container {
   margin-top: 10px;
 }
-/*.floating-label label {
-  top: 5px;
-  left: 10px;
+.header-text {
+  font-weight: 400;
 }
-input:not(.no-style) {
-  padding-left: 10px;
-  padding-right: 10px;
-}*/
 </style>

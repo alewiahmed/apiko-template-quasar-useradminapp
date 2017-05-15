@@ -4,14 +4,14 @@
       <q-toolbar-title :padding="0">
       <button class="big capitalize" @click="redirect('home')">Apiko + Quasar Framework v{{$q.version}}</button>
       </q-toolbar-title>
-      <button v-if="loggedIn" class="capitalize">
-      {{user.username}}
+      <button v-if="loggedIn" class="capitalize outline">
+      {{user.name || user.username}}
       <q-popover
           ref="popover"
         >
           <div class="list highlight" style="min-width: 120px">
             <div class="item item-link item-delimiter">
-              <div class="item-content" @click="">
+              <div class="item-content" @click="redirect('accountSettings'), $refs.popover.close()">
               Account Setting
               </div>
             </div>

@@ -7,7 +7,7 @@
            <i>keyboard_arrow_left</i>
          </button>
          <q-toolbar-title class="text-center">
-           Registration
+           <span class="header-text">Registration</span>
          </q-toolbar-title>
        </div>
        <div class="card-content bg-white column items-center">
@@ -211,5 +211,8 @@ export default {
   }
   .button-container {
     margin-top: 10px;
+  }
+  .header-text {
+    font-weight: 400;
   }
 </style>

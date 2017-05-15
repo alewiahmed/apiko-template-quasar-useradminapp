@@ -24,6 +24,11 @@ export default {
     },
     token (state, token) {
       state.token = token
+    },
+    updateUser (state, user) {
+      for (let value in user.args) {
+        state.user[value] = user.args[value]
+      }
     }
   },
   actions: {
@@ -39,6 +44,18 @@ export default {
     },
     userExists (context, username) {
       let p = window.apikoApi.get('users/exists/' + username)
+      return p
+    },
+    updateUser (context, payload) {
+      let p = window.apikoApi.put('users/' + payload.id, payload.args)
+      p.then(response => {
+        context.commit('updateUser', payload)
+      })
+      return p
+    },
+    changePassword (context, payload) {
+      let p = window.apikoApi.post('/users/password/change/' + payload.id, payload.args)
+
       return p
     }
   }
