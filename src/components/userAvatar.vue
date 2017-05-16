@@ -31,11 +31,10 @@ export default {
     },
     backgroundImage () {
       return {
-        'background-image': 'url(' + require('../assets/apiko.svg') + ')',
-        'background-repeat': 'space',
+        'background-image': 'url(' + require('../assets/apiko-bamboo.png') + ')',
+        'background-repeat': 'no-border',
         'background-position': 'center',
-        'background-size': 'contain',
-        'background-color': '#7ACACD'
+        'background-size': 'contain'
       }
     }
   }
