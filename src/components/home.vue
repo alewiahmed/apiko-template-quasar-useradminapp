@@ -8,7 +8,7 @@
     <div class="card bg-white logos-container">
       <div class="card-content flex column items-center">
       <div class="generic-margin">
-        "Welcome to the Apiko - Quasar User application example, which demonstrates a Quasar application working together with an Apiko API server."
+        "Welcome to the Apiko - Quasar User application template, which demonstrates a Quasar application working together with an Apiko API server."
       </div>
       <div class="group generic-margin">
         <button class="green" v-if="!loggedIn" @click="redirect('login')">
