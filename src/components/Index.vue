@@ -4,29 +4,21 @@
       <q-toolbar-title :padding="0">
       <button class="big capitalize" @click="redirect('home')">Apiko + Quasar Framework v{{$q.version}}</button>
       </q-toolbar-title>
-      <button v-if="loggedIn" class="capitalize outline">
-      {{user.name || user.username}}
-      <q-popover
-          ref="popover"
-        >
-          <div class="list highlight" style="min-width: 120px">
-            <div class="item item-link item-delimiter">
-              <div class="item-content" @click="redirect('accountSettings'), $refs.popover.close()">
-              Account Setting
-              </div>
-            </div>
-          </div>
-        </q-popover>
-      </button>
-      <button v-if="!loggedIn" @click="redirect('login')">
+      <button @click="$refs.leftDrawer.open()" v-if="loggedIn">
         <i>menu</i>
-        Login
-      </button>
-      <button v-if="!loggedIn" @click="redirect('registration')">
-        <i>add_box</i>
-        Register
       </button>
     </div>
+    <q-drawer ref="leftDrawer" :swipe-only="true" right-side>
+      <userAvatar></userAvatar>
+      <div class="list no-border platform-delimiter">
+        <q-drawer-link icon="settings" :to="{path:'account-settings' , exact: true}">
+        Account Settings
+        </q-drawer-link>
+        <q-drawer-link icon="help" :to="{path: 'logout', exact: true}">
+        Logout
+        </q-drawer-link>
+      </div>
+    </q-drawer>
 
     <!--
       Replace following "div" with
@@ -41,14 +33,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import userAvatar from './userAvatar.vue'
 
 export default {
+  components: {
+    userAvatar
+  },
   data () {
     return {
     }
   },
   computed: {
-    ...mapGetters(['user', 'loggedIn'])
+    ...mapGetters(['loggedIn'])
   },
   methods: {
     redirect (address) {
@@ -58,7 +54,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 body {
   background-color: #f5f8fa;
 }

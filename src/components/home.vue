@@ -1,24 +1,34 @@
 <template>
-    <div class="layout-view">
-      <div class="logo-container non-selectable no-pointer-events">
-        <div class="logo" :style="position">
-          <img src="~assets/quasar-logo.png">
-          <p class="caption text-center">
-            <span v-if="orienting">Tilt your device.</span>
-            <template v-else>
-              <span class="desktop-only">Move your mouse.</span>
-              <span class="touch-only">Touch screen and move.</span>
-            </template>
-          </p>
-        </div>
+<!-- <div> -->
+    <div class="layout-padding flex column items-center">
+    <div class="card logos-container bg-white">
+    <img src="../assets/Apiko + Quasar.svg">
+      <div class="card-content"></div>
+    </div>
+    <div class="card bg-white logos-container">
+      <div class="card-content flex column items-center">
+      <div class="generic-margin">
+        "Welcome to the Apiko - Quasar User application example, which demonstrates a Quasar application working together with an Apiko API server."
+      </div>
+      <div class="group generic-margin">
+        <button class="green" v-if="!loggedIn" @click="redirect('login')">
+          Login
+        </button>
+        <button class="primary" v-if="!loggedIn" @click="redirect('registration')">
+          Register
+        </button>
+      </div>
       </div>
     </div>
+    </div>
+    <!-- </div> -->
 </template>
 
 <script>
 var moveForce = 30
 var rotateForce = 40
 
+import { mapGetters } from 'vuex'
 import { Utils, Platform } from 'quasar'
 
 export default {
@@ -32,6 +42,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['loggedIn']),
     position () {
       let transform = `rotateX(${this.rotateX}deg) rotateY(${this.rotateY}deg)`
       return {
@@ -44,6 +55,9 @@ export default {
     }
   },
   methods: {
+    redirect (address) {
+      this.$router.push({name: address})
+    },
     move (evt) {
       const {width, height} = Utils.dom.viewport()
       const {top, left} = Utils.event.position(evt)
@@ -93,4 +107,10 @@ export default {
 .logo
   position absolute
   transform-style preserve-3d
+</style>
+<style scoped>
+.logos-container {
+  max-width: 600px;
+  width: 85%;
+}
 </style>

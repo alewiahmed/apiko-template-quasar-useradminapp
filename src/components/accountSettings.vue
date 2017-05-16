@@ -3,7 +3,6 @@
   <div>
     <!-- your content -->
     <div class="layout-padding">
-    <userAvatar></userAvatar>
     <generalSettings></generalSettings>
     <changePassword></changePassword>
     </div>
@@ -11,12 +10,11 @@
 </template>
 
 <script>
-import userAvatar from './userAvatar.vue'
 import changePassword from './changePassword.vue'
 import generalSettings from './generalSettings.vue'
 export default {
   components: {
-    generalSettings, changePassword, userAvatar
+    generalSettings, changePassword
   },
   data () {
     return {}

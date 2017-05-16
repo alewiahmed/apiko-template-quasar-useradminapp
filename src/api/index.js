@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../store'
-axios.defaults.baseURL = 'http://zeta.e0.cz:5001/api'
-// axios.defaults.baseURL = 'http://localhost:5000'
+// axios.defaults.baseURL = 'http://zeta.e0.cz:5001/api'
+axios.defaults.baseURL = 'http://localhost:5000'
 function request (opts) {
   if (!opts.args) {
     opts.args = {}
