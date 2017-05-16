@@ -1,7 +1,7 @@
 <template>
 <!-- <div> -->
     <div class="layout-padding flex column items-center">
-    <div class="card logos-container bg-white">
+    <div class="logos-container">
     <img src="../assets/Apiko + Quasar.svg">
       <div class="card-content"></div>
     </div>
