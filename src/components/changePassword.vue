@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import { Toast } from 'quasar'
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
@@ -82,6 +82,7 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
+    ...mapActions(['changePassword']),
     inputChanged (element) {
       this.errorId = 0
       element.$touch()
@@ -96,7 +97,7 @@ export default {
         new: this.newPassword
       }
 
-      let p = this.$store.dispatch('changePassword', payload)
+      let p = this.changePassword(payload)
 
       p.then(response => {
         this.isLoading = false

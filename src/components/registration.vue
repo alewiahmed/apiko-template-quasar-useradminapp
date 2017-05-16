@@ -41,7 +41,7 @@
         </div>
         <small class="text-red" v-if="errorId > 0">{{error}}</small>
         <div class="button-container">
-          <button class="primary round small"  :disabled="$v.$invalid" @click="register">
+          <button class="primary round small"  :disabled="$v.$invalid" @click="registerUser">
             Register
             <i class="on-right">keyboard_arrow_right</i>
           </button>
@@ -55,6 +55,7 @@
     <script>
 import { login } from '../utils.js'
 import { Loading, Utils } from 'quasar'
+import { mapActions } from 'vuex'
 
 import { required, sameAs, minLength, email } from 'vuelidate/lib/validators'
 export default {
@@ -85,7 +86,8 @@ export default {
         }
         return new Promise((resolve, reject) => {
           this.checkUsername = true
-          let p = this.$store.dispatch('userExists', value)
+
+          let p = this.userExists(value)
           p.then(response => {
             this.checkUsername = false
             if (response.data.exists) {
@@ -130,6 +132,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['userExists', 'register']),
     inputChanged (element) {
       this.errorId = 0
       element.$touch()
@@ -138,10 +141,10 @@ export default {
       this.username = this.tempUsername
       name.$touch()
     }, 600, false),
-    register () {
+    registerUser () {
       this.checkUsername = false
       Loading.show(this.loadingObj)
-      let p = this.$store.dispatch('register', {
+      let p = this.register({
         username: this.username,
         password: this.password
         // role: 'member'

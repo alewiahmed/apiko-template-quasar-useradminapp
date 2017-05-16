@@ -15,7 +15,7 @@
         Account Settings
         </q-drawer-link>
         <div class="list no-border">
-          <div class="item item-link" @click="logout" v-go-back=" '/'">
+          <div class="item item-link" @click="logUserOut" v-go-back=" '/'">
           <i class="item-primary">undo</i>
             <div class="item-content">
               Logout
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import userAvatar from './userAvatar.vue'
 
 export default {
@@ -52,13 +52,14 @@ export default {
     ...mapGetters(['loggedIn'])
   },
   methods: {
+    ...mapMutations(['logout']),
     redirect (address) {
       this.$router.push({name: address})
     },
-    logout () {
+    logUserOut () {
       this.$router.replace({path: '/'})
       this.$refs.leftDrawer.close()
-      this.$store.commit('logout')
+      this.logout()
     }
   }
 }

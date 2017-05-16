@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import { Toast } from 'quasar'
 import { required } from 'vuelidate/lib/validators'
@@ -51,6 +51,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateUser']),
     inputChanged (element) {
       this.errorId = 0
       element.$touch()
@@ -64,7 +65,7 @@ export default {
         user.args.name = this.name
       }
       this.isLoading = true
-      let p = this.$store.dispatch('updateUser', user)
+      let p = this.updateUser(user)
 
       p.then(response => {
         this.isLoading = false
