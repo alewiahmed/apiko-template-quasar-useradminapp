@@ -29,6 +29,11 @@ export default {
       for (let value in user.args) {
         state.user[value] = user.args[value]
       }
+    },
+    logout (state, user) {
+      state.user = {}
+      state.loggedIn = false
+      state.token = null
     }
   },
   actions: {

@@ -14,9 +14,14 @@
         <q-drawer-link icon="settings" :to="{path:'account-settings' , exact: true}">
         Account Settings
         </q-drawer-link>
-        <q-drawer-link icon="help" :to="{path: 'logout', exact: true}">
-        Logout
-        </q-drawer-link>
+        <div class="list no-border">
+          <div class="item item-link" @click="logout" v-go-back=" '/'">
+          <i class="item-primary">undo</i>
+            <div class="item-content">
+              Logout
+            </div>
+          </div>
+        </div>
       </div>
     </q-drawer>
 
@@ -49,6 +54,11 @@ export default {
   methods: {
     redirect (address) {
       this.$router.push({name: address})
+    },
+    logout () {
+      this.$router.replace({path: '/'})
+      this.$refs.leftDrawer.close()
+      this.$store.commit('logout')
     }
   }
 }

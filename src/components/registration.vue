@@ -4,7 +4,7 @@
       <div class="card registration-container">
        <div class="toolbar inverted text-black list">
          <button @click="$router.replace({name: 'login'})">
-           <i>keyboard_arrow_left</i>
+           <i>navigate_before</i>
          </button>
          <q-toolbar-title class="text-center">
            <span class="header-text">Registration</span>
