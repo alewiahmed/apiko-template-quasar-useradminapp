@@ -30,7 +30,7 @@
       <router-view class="layout-view"> component
       if using subRoutes
     -->
-    <transition>
+    <transition name='route' mode="out-in">
     <router-view class="layout-view"></router-view>
     </transition>
   </q-layout>
@@ -68,5 +68,15 @@ export default {
 <style>
 body {
   background-color: #f5f8fa;
+}
+.route-enter {
+  transform: translateX(600px);
+  opacity: 0;
+}
+.route-enter-active {
+  transition: all 0.5s ease;
+}
+.route-leave {
+  opacity: 0;
 }
 </style>
