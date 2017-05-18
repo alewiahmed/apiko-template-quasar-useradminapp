@@ -30,7 +30,7 @@ let router = new VueRouter({
       path: '/',
       component: load('Index'),
       children: [
-      { name: 'home', path: '', component: load('home') },
+      { name: 'home', path: '', component: load('home'), meta: { onlyNotLogged: true } },
       { name: 'login', path: 'login', component: load('login'), meta: { onlyNotLogged: true } },
       { name: 'registration', path: 'register', component: load('registration'), meta: { onlyNotLogged: true } },
       { name: 'passwordRecovery', path: 'password-recovery', component: load('passwordRecovery'), meta: { onlyNotLogged: true } },

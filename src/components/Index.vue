@@ -2,7 +2,8 @@
   <q-layout>
     <div slot="header" class="toolbar">
       <q-toolbar-title :padding="0">
-      <button class="big capitalize" @click="redirect('home')">Apiko + Quasar App</button>
+      <button class="big capitalize" @click="redirect('dashboard')" v-if="loggedIn">Dashboard</button>
+      <button class="big capitalize" @click="redirect('home')" v-else>Apiko + Quasar App</button>
       </q-toolbar-title>
       <button @click="$refs.leftDrawer.open()" v-if="loggedIn">
         <i>menu</i>
