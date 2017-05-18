@@ -7,7 +7,7 @@
             <i>keyboard_arrow_left</i>
           </button>
           <q-toolbar-title class="text-center">
-            Reset password
+            <span class="header-text">Reset password</span>
           </q-toolbar-title>
         </div>
         <div class="card-content bg-white column items-center">
@@ -60,5 +60,8 @@ export default {
 .recovery-container {
   width: 85%;
   max-width: 400px;
+}
+.header-text {
+  font-weight: 400;
 }
 </style>

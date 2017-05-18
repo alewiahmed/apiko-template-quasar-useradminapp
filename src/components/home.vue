@@ -2,7 +2,7 @@
 <!-- <div> -->
     <div class="layout-padding flex column items-center">
     <div class="logos-container">
-    <img src="../assets/Apiko + Quasar.svg">
+    <img src="../assets/Apiko-Quasar.svg">
       <div class="card-content"></div>
     </div>
     <div class="card bg-white logos-container">

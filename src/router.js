@@ -20,10 +20,9 @@ let router = new VueRouter({
    * If switching back to default "hash" mode, don't forget to set the
    * build publicPath back to '' so Cordova builds work again.
    *
-   * Use onlyLogged & onlyNotLogged to controll who can view your routes.
+   * Use onlyLogged & onlyNotLogged to control who can view your routes.
    * Use onlyLogged = true for those routes you want only logged in users to view.
    * Use onlyNotLogged = true for those routes you want only not logged in users to view.
-   * You can use both in conjunction
    */
 
   routes: [
