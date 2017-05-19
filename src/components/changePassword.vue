@@ -28,7 +28,7 @@
         <input required type="password" class="full-width" @input="inputChanged($v.confirmPassword)" v-model="confirmPassword" :class="{'has-error': $v.confirmPassword.$error}">
         <label>Confirm Password</label>
         <ul class="error-list">
-          <li v-if="!$v.confirmPassword.sameAsPassword && $v.confirmPassword.$error" class="text-red text-truncate"><small>Password should have uppercase, lowercase & numeric.</small></li>
+          <li v-if="!$v.confirmPassword.sameAsPassword && $v.confirmPassword.$error" class="text-red text-truncate"><small>Both passwords must match.</small></li>
         </ul>
       </div>
       <div class="row justify-center group">
