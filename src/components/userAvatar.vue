@@ -2,11 +2,11 @@
   <div class="card" :style="backgroundImage">
     <div class="card-content column justify-center items-center">
     <div class="avatar-rep text-white relative-position">{{avatarChar}}</div>
-      <div class="item" :class="{'three-lines': user.role !== null && user.role !== '', 'two-lines': user.role === null || user.role === ''}">
+      <div class="item" :class="{'three-lines': role !== '', 'two-lines': role === ''}">
         <div class="item-content column items-center generic-margin">
-          <span class="label bg-white text-black username">{{user.name || 'User Name'}}</span>
+          <span class="label bg-white text-black username">{{user.name || 'userName'}}</span>
           <small class="label caption bg-primary text-white username">{{user.username}}</small>
-          <small class="label bg-negative text-white" v-if="user.role !== '' && user.role !== null">{{user.role}}</small>
+          <small class="label bg-negative text-white" v-if="role !== ''">{{user.role}}</small>
         </div>
       </div>
     </div>
@@ -15,12 +15,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
+  props: ['user'],
   data () {
     return {}
   },
   computed: {
-    ...mapGetters(['user']),
+    ...mapGetters({theUser: 'user'}),
     avatarChar () {
       if (this.user.name) {
         return this.user.name.charAt(0)
@@ -30,12 +32,20 @@ export default {
       }
     },
     backgroundImage () {
-      return {
-        'background-image': 'url(' + require('../assets/apiko-bamboo.png') + ')',
-        'background-repeat': 'no-border',
-        'background-position': 'center',
-        'background-size': 'contain'
+      if (this.theUser.id === this.user.id) {
+        return {
+          'background-image': 'url(' + require('../assets/apiko-bamboo.png') + ')',
+          'background-repeat': 'no-border',
+          'background-position': 'center',
+          'background-size': 'cover'
+        }
       }
+      return {
+        'background-color': 'white'
+      }
+    },
+    role () {
+      return (this.user.role && (this.user.role !== '' || this.user.role !== null)) ? this.user.role : ''
     }
   }
 }

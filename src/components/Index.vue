@@ -10,7 +10,7 @@
       </button>
     </div>
     <q-drawer ref="leftDrawer" :swipe-only="true" right-side>
-      <userAvatar></userAvatar>
+      <userAvatar :user="user"></userAvatar>
       <div class="list no-border platform-delimiter">
         <q-drawer-link icon="settings" :to="{path:'account-settings' , exact: true}">
         Account Settings
@@ -49,7 +49,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['loggedIn', 'isAdmin'])
+    ...mapGetters(['loggedIn', 'isAdmin', 'user'])
   },
   methods: {
     redirect (address) {
