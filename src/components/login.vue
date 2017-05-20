@@ -49,6 +49,7 @@
 
 <script>
 import { Loading } from 'quasar'
+import { mapGetters } from 'vuex'
 import { login } from '../utils.js'
 
 import { required, minLength, email } from 'vuelidate/lib/validators'
@@ -84,6 +85,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isAdmin']),
     error () {
       switch (this.errorId) {
         case 1:
@@ -111,6 +113,9 @@ export default {
       p.then(response => {
         Loading.hide()
         this.$router.replace('dashboard')
+        if (this.isAdmin) {
+          this.$store.dispatch('getUsers')
+        }
       })
 
       p.catch(error => {

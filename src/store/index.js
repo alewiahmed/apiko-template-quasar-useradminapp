@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
 import account from './modules/account.js'
+import usersManagement from './modules/usersManagement.js'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    account
+    account, usersManagement
   },
   plugins: [createPersistedState()]
 })

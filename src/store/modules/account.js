@@ -13,6 +13,9 @@ export default {
     },
     token (state) {
       return state.token
+    },
+    isAdmin ({user}) {
+      return user.role === 'admin'
     }
   },
   mutations: {

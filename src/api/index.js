@@ -2,13 +2,19 @@ import axios from 'axios'
 import store from '../store'
 // axios.defaults.baseURL = 'http://zeta.e0.cz:5001/api'
 axios.defaults.baseURL = 'http://localhost:5000'
+
 function request (opts) {
   if (!opts.args) {
     opts.args = {}
   }
-  if (store.state.account.loggedIn) {
+  if (store.state.account.loggedIn && opts.method === 'get') {
+    opts.args.params = {}
+    opts.args.params.token = store.state.account.token
+  }
+  else if (store.state.account.loggedIn) {
     opts.args.token = store.state.account.token
   }
+
   let p = axios[opts.method](opts.path, opts.args)
   p.then((response) => {
     console.log('HTTP OK:', response)

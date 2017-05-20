@@ -12,3 +12,8 @@ export function login (username, password) {
 
   return p
 }
+
+export function logout () {
+  store.commit('logout')
+  store.commit('saveUsers', null)
+}

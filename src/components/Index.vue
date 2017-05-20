@@ -15,6 +15,9 @@
         <q-drawer-link icon="settings" :to="{path:'account-settings' , exact: true}">
         Account Settings
         </q-drawer-link>
+        <q-drawer-link icon="settings" :to="{path:'users-management' , exact: true}" @click="$refs.leftDrawer.close()">
+        Users management
+        </q-drawer-link>
         <div class="list no-border">
           <div class="item item-link" @click="logUserOut" v-go-back=" '/'">
           <i class="item-primary">undo</i>
@@ -25,12 +28,7 @@
         </div>
       </div>
     </q-drawer>
-
-    <!--
-      Replace following "div" with
-      <router-view class="layout-view"> component
-      if using subRoutes
-    -->
+    
     <transition name='route' mode="out-in">
     <router-view class="layout-view"></router-view>
     </transition>
@@ -38,8 +36,9 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 import userAvatar from './userAvatar.vue'
+import { logout } from '../utils.js'
 
 export default {
   components: {
@@ -50,17 +49,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['loggedIn'])
+    ...mapGetters(['loggedIn', 'isAdmin'])
   },
   methods: {
-    ...mapMutations(['logout']),
     redirect (address) {
       this.$router.push({name: address})
     },
     logUserOut () {
       this.$router.replace({path: '/'})
       this.$refs.leftDrawer.close()
-      this.logout()
+      logout()
     }
   }
 }
