@@ -54,10 +54,15 @@ export default {
       let p = window.apikoApi.get('users/exists/' + username)
       return p
     },
-    updateUser (context, payload) {
+    updateUser ({commit, state}, payload) {
       let p = window.apikoApi.put('users/' + payload.id, payload.args)
       p.then(response => {
-        context.commit('updateUser', payload)
+        if (state.user.id === payload.id) {
+          commit('updateUser', payload)
+        }
+        else {
+          commit('updateOtherUser', payload)
+        }
       })
       return p
     },

@@ -25,11 +25,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 import { Toast } from 'quasar'
 import { required } from 'vuelidate/lib/validators'
 export default {
+  props: ['user'],
   data () {
     return {
       name: '',
@@ -42,7 +43,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['user']),
     noFieldChanged () {
       if (this.name !== this.user.name) {
         return false
@@ -74,13 +74,12 @@ export default {
           timeout: 4000
         })
       })
-      p.catch(error => {
+      p.catch(() => {
         this.isLoading = false
         Toast.create.negative({
           html: 'Oh snap! Change a few things up and try submitting again.',
           timeout: 4000
         })
-        console.warn(error)
       })
     },
     cancel () {

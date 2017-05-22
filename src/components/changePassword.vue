@@ -40,11 +40,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 import { Toast } from 'quasar'
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 export default {
+  props: ['user'],
   data () {
     return {
       existingPassword: '',
@@ -77,9 +78,6 @@ export default {
     confirmPassword: {
       sameAsPassword: sameAs('newPassword')
     }
-  },
-  computed: {
-    ...mapGetters(['user'])
   },
   methods: {
     ...mapActions(['changePassword']),

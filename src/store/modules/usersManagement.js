@@ -20,6 +20,14 @@ export default {
     },
     removeUser (state, userId) {
       state.users = state.users.filter(user => user.id !== userId)
+    },
+    updateOtherUser (state, payload) {
+      let index = state.users.findIndex(user => user.id === payload.id)
+      if (index !== -1) {
+        for (let value in payload.args) {
+          state.users[index][value] = payload.args[value]
+        }
+      }
     }
   },
   actions: {

@@ -6,7 +6,7 @@
       <transition-group class="row sm-column wrap" name="list" tag="div">
         <div class="card-class lg-width-1of4 bg-width-1of3 md-width-1of2" v-for="(user, index) in users" :key="user.id" @mouseover="showControl = index" @mouseleave="showControl = null">
           <div class="button-container" v-if="showControl == index">
-            <button class="clear text-green small">
+            <button class="clear text-green small" @click="gotoUserPage(user.id)">
               <i>edit</i>
             </button>
             <button class="clear text-red small" @click="removeUser(user.id)">
@@ -72,6 +72,9 @@ export default {
           }
         ]
       })
+    },
+    gotoUserPage (id) {
+      this.$router.push({ name: 'singleUserManagement', params: {id: id} })
     }
   }
 }

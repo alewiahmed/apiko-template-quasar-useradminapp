@@ -12,9 +12,12 @@
     <q-drawer ref="leftDrawer" :swipe-only="true" right-side>
       <userAvatar :user="user"></userAvatar>
       <div class="list no-border platform-delimiter">
-        <q-drawer-link icon="settings" :to="{path:'account-settings' , exact: true}">
-          Account Settings
-        </q-drawer-link>
+        <div class="item item-link" @click="redirect('accountSettings')">
+        <i class="item-primary">settings</i>
+          <div class="item-content">
+            Account Settings
+          </div>
+        </div>
         <div class="item item-link" @click="redirect('usersManagement')" v-if="isAdmin">
         <i class="item-primary">supervisor_account</i>
           <div class="item-content">
