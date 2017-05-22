@@ -17,6 +17,9 @@ export default {
       else {
         state.users = []
       }
+    },
+    removeUser (state, userId) {
+      state.users = state.users.filter(user => user.id !== userId)
     }
   },
   actions: {
@@ -25,6 +28,15 @@ export default {
 
       p.then((response) => {
         commit('saveUsers', {users: response.data, user: rootState.account.user})
+      })
+
+      return p
+    },
+    deleteUser ({commit}, userId) {
+      let p = window.apikoApi.delete('users/' + userId)
+
+      p.then(response => {
+        commit('removeUser', userId)
       })
 
       return p
