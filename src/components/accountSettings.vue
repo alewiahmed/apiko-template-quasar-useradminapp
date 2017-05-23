@@ -2,6 +2,11 @@
   <!-- root node required -->
   <div>
     <!-- your content -->
+    <div class="toolbar negative inverted">
+        <button @click.stop="$router.go(-1)">
+          <i>keyboard_arrow_left</i>
+        </button>
+    </div>
     <div class="layout-padding">
       <div v-if="user !== undefined">
         <generalSettings :user="user"></generalSettings>

@@ -1,7 +1,9 @@
 <template>
   <!-- root node required -->
   <div>
-    <!-- your content -->
+    <q-autocomplete v-model="userTerms" :delay="0" @search="search" @selected="selected" :max-results="4" :min-characters="3">
+      <q-search v-model="userTerms" placeholder="Search"></q-search>
+    </q-autocomplete>
     <div class="layout-padding">
       <transition-group class="row sm-column wrap" name="list" tag="div">
         <div class="card-class lg-width-1of4 bg-width-1of3 md-width-1of2" v-for="(user, index) in users" :key="user.id" @mouseover="showControl = index" @mouseleave="showControl = null">
@@ -29,7 +31,8 @@ export default {
   components: { userAvatar },
   data () {
     return {
-      showControl: null
+      showControl: null,
+      userTerms: ''
     }
   },
   computed: {
@@ -37,8 +40,25 @@ export default {
   },
   methods: {
     ...mapActions(['deleteUser']),
-    called () {
-      alert('mouse over')
+    search (term, done) {
+      let users = this.users.filter((user) => {
+        return user.username.toLowerCase().includes(term.toLowerCase())
+      })
+      let searchResult = users.map((user) => {
+        return {
+          value: user.username,
+          label: user.username,
+          secondLabel: 'Email: ' + user.username,
+          icon: 'account_box',
+          stamp: user.role,
+          id: user.id
+        }
+      })
+      done(searchResult)
+    },
+    selected (term) {
+      this.userTerms = ''
+      this.gotoUserPage(term.id)
     },
     removeUser (userId) {
       Dialog.create({
