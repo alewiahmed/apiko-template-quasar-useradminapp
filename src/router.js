@@ -47,7 +47,6 @@ router.beforeEach((to, from, next) => {
   // check if the route requires login
   if (to.matched.some(m => m.meta.onlyLogged) || to.matched.some(m => m.meta.onlyAdmin)) {
     if (!store.state.account.loggedIn) {
-      console.log('Redirecting to the Login, because this page (' + to.fullPath + ') is protected. And the user is not logged in. User:', store.state.account.user)
       next('login')
     }
     else if (to.matched.some(m => m.meta.onlyAdmin) && !store.getters.isAdmin) {

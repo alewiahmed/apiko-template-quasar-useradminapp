@@ -15,16 +15,7 @@ function request (opts) {
     opts.args.token = store.state.account.token
   }
 
-  let p = axios[opts.method](opts.path, opts.args)
-  p.then((response) => {
-    console.log('HTTP OK:', response)
-  })
-
-  p.catch((error) => {
-    console.warn('HTTP ERR:', error)
-  })
-
-  return p
+  return axios[opts.method](opts.path, opts.args)
 }
 export default {
   // AJAX GET
